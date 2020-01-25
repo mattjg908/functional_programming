@@ -45,4 +45,26 @@ defmodule Chapter2.Exercises do
     IO.puts "Price: #{price * (1 + tax_rate) |> Float.round(4)} - Tax: #{price * tax_rate}"
   end
   Enum.each [12.5, 30.99, 250.49, 18.80], apply_tax
+
+
+  defmodule MatchstickFactory do
+    @moduledoc """
+    Create a module called MatchstickFactory and a function called boxes/1. The
+    function will calculate the number of boxes necessary to accommodate some
+    matchsticks. It returns a map with the number of boxes necessary for each
+    type of box. The factory has three types of boxes: the big ones hold fifty
+    matchsticks, the medium ones hold twenty, and the small ones hold five. The
+    boxes can’t have fewer matchstick that they can hold; they must be full.
+    The returning map should contain the remaining matchsticks.
+    """
+
+    def boxes(number_of_matches) do
+		  box(%{b: 0, m: 0, s: 0, r: number_of_matches})
+    end
+
+		defp box(%{b: _b, m: m, s: s, r: r}) when div(r, 50) != 0, do: box(%{ b: div(r, 50), m: m,s: s, r: rem(r, 50)})
+		defp box(%{b: b, m: _m, s: s, r: r}) when div(r, 20) != 0, do: box(%{ b: b, m: div(r, 20), s: s, r: rem(r, 20)})
+		defp box(%{b: b, m: m, s: _s, r: r}) when div(r, 5) != 0, do: box(%{ b: b, m: m, s: div(r, 5), r: rem(r, 5)})
+		defp box(%{b: b, m: m, s: s, r: r}), do: %{big: b, medium: m, remaining_matchsticks: r, small: s}
+  end
 end
