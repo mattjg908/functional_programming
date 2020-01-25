@@ -25,4 +25,12 @@ defmodule Chapter2.Exercises do
     |> Kernel.+(money_spent_on_cake.(cake_quant))
   end
 
+
+  #Bob has traveled 200 km in four hours. Using variables, print a message
+  #showing his travel distance, time, and average velocity.
+
+  distance_traveled = 200
+  hours_traveled = 4
+  average_velocity = distance_traveled/hours_traveled
+  IO.puts "Bob went #{distance_traveled} kilometers in #{hours_traveled} hours for an average velocity of #{average_velocity} km/hour"
 end
