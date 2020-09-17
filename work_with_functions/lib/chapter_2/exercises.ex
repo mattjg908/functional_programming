@@ -59,12 +59,12 @@ defmodule Chapter2.Exercises do
     """
 
     def boxes(number_of_matches) do
-		  box(%{b: 0, m: 0, s: 0, r: number_of_matches})
+      box(%{b: 0, m: 0, s: 0, r: number_of_matches})
     end
 
-		defp box(%{b: _b, m: m, s: s, r: r}) when div(r, 50) != 0, do: box(%{ b: div(r, 50), m: m,s: s, r: rem(r, 50)})
-		defp box(%{b: b, m: _m, s: s, r: r}) when div(r, 20) != 0, do: box(%{ b: b, m: div(r, 20), s: s, r: rem(r, 20)})
-		defp box(%{b: b, m: m, s: _s, r: r}) when div(r, 5) != 0, do: box(%{ b: b, m: m, s: div(r, 5), r: rem(r, 5)})
-		defp box(%{b: b, m: m, s: s, r: r}), do: %{big: b, medium: m, remaining_matchsticks: r, small: s}
+    defp box(%{b: _b, m: m, s: s, r: r}) when div(r, 50) != 0, do: box(%{ b: div(r, 50), m: m,s: s, r: rem(r, 50)})
+    defp box(%{b: b, m: _m, s: s, r: r}) when div(r, 20) != 0, do: box(%{ b: b, m: div(r, 20), s: s, r: rem(r, 20)})
+    defp box(%{b: b, m: m, s: _s, r: r}) when div(r, 5) != 0, do: box(%{ b: b, m: m, s: div(r, 5), r: rem(r, 5)})
+    defp box(%{b: b, m: m, s: s, r: r}), do: %{big: b, medium: m, remaining_matchsticks: r, small: s}
   end
 end
