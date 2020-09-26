@@ -143,19 +143,17 @@ defmodule Chapter4.Exercises do
       go_through([expanded_dir], 0)
     end
 
-    defp go_through([], current_breadth), do: nil
-    defp go_through(list, current_breadth) when current_breadth > @max_breadth,
+    defp go_through(_list, current_breadth) when current_breadth >= @max_breadth,
         do: nil
-    defp go_through([content | rest], current_breadth) do
-      print_and_navigate(content, File.dir?(content))
-      go_through(rest, current_breadth + 1)
+    defp go_through([content | _rest], current_breadth) do
+      print_and_navigate(content, File.dir?(content), current_breadth)
     end
 
-    defp print_and_navigate(_dir, false), do: nil
-    defp print_and_navigate(dir, true) do
+    defp print_and_navigate(_dir, false, _current_breadth), do: nil
+    defp print_and_navigate(dir, true, current_breadth) do
       IO.puts dir
       {:ok, children_dirs} = File.ls(dir)
-      go_through(expand_dirs(children_dirs, dir), 0)
+      go_through(expand_dirs(children_dirs, dir), current_breadth + 1)
     end
 
     defp expand_dirs([], _relative_to), do: []
